@@ -2,12 +2,22 @@
 /* eslint-disable @next/next/no-img-element */
 import yes from "/public/yes.png";
 import no from "/public/no.png";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import random from "random";
 
 const ShouldI = () => {
     const [isShowAns, setIsShowAns] = useState(false);
 
-    const isYes = useMemo(() => Math.random() <= 0.5, []);
+    // const isYes = useMemo(() => Math.random() <= 0.5, []);
+    const isYes = random.boolean();
+
+    useEffect(() => {
+        console.log(`
+┳┓┏┓┳┓╹┏┳┓  ┏┓┓┏┏┓┏┓┏┳┓
+┃┃┃┃┃┃  ┃   ┃ ┣┫┣ ┣┫ ┃ 
+┻┛┗┛┛┗  ┻   ┗┛┛┗┗┛┛┗ ┻ 
+        `);
+    }, []);
 
     return (
         <div className="h-screen w-screen bg-pink-100">
