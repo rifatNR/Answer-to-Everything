@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import yes from "/public/yes.png";
 import no from "/public/no.png";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import random from "random";
 
 const ShouldI = () => {
@@ -10,6 +10,21 @@ const ShouldI = () => {
 
     // const isYes = useMemo(() => Math.random() <= 0.5, []);
     const isYes = random.boolean();
+
+    const handleKeyPress = useCallback((event: any) => {
+        // console.log(`Key pressed: ${event.key}`);
+        if (event.key == "Enter" || event.key == " ") {
+            setIsShowAns(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyPress);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyPress);
+        };
+    }, [handleKeyPress]);
 
     useEffect(() => {
         console.log(`
